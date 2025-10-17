@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Your Account | Modern Bank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a4f8c;
+            --primary-dark: #0d3b66;
+            --secondary: #28a745;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --border: #dee2e6;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px 0;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .form-section {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .benefits-section {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* Form Styles */
+        .form-container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-title {
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 79, 140, 0.2);
+        }
+
+        .file-upload {
+            padding: 12px;
+            border: 2px dashed var(--border);
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary);
+            background-color: rgba(26, 79, 140, 0.05);
+        }
+
+        .file-upload i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-name {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* OTP Verification */
+        .otp-section {
+            display: none;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .otp-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .otp-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .otp-input {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font-size: 1.2rem;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .otp-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(26, 79, 140, 0.2);
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(26, 79, 140, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn i {
+            transition: var(--transition);
+        }
+
+        .submit-btn.loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .success-message h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .account-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 15px 0;
+            padding: 10px;
+            background-color: rgba(26, 79, 140, 0.1);
+            border-radius: 5px;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .benefits-title {
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+            font-size: 1.5rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .benefit-icon {
+            background: rgba(26, 79, 140, 0.1);
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h4 {
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .benefit-content p {
+            color: var(--gray);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .login-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            header p {
+                font-size: 1rem;
+            }
+            
+            .form-container, .benefits-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Open Your Account Online</h1>
+                <p>Fill in your details and open your account instantly.</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="content-wrapper">
+                <section class="form-section">
+                    <div class="form-container">
+                        <h2 class="form-title">Account Information</h2>
+                        <form id="accountForm">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mobile">Mobile Number</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dob">Date of Birth</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <input type="date" id="dob" name="dob" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-home"></i>
+                                    <input type="text" id="address" name="address" placeholder="Enter your complete address" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="accountType">Account Type</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-piggy-bank"></i>
+                                    <select id="accountType" name="accountType" required>
+                                        <option value="" disabled selected>Select account type</option>
+                                        <option value="savings">Savings Account</option>
+                                        <option value="current">Current Account</option>
+                                        <option value="fixed">Fixed Deposit</option>
+                                        <option value="nri">NRI Account</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="deposit">Initial Deposit Amount</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <input type="number" id="deposit" name="deposit" placeholder="Enter initial deposit amount" min="0" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>ID Proof Upload</label>
+                                <div class="file-upload" id="idUpload">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Click to upload ID proof (Aadhaar, Passport, etc.)</p>
+                                    <input type="file" class="file-input" id="idProof" accept=".jpg,.jpeg,.png,.pdf">
+                                    <div class="file-name" id="idFileName"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Address Proof Upload</label>
+                                <div class="file-upload" id="addressUpload">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Click to upload address proof</p>
+                                    <input type="file" class="file-input" id="addressProof" accept=".jpg,.jpeg,.png,.pdf">
+                                    <div class="file-name" id="addressFileName"></div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="submit-btn" id="submitBtn">
+                                <i class="fas fa-user-plus"></i> Open Account
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="otp-section" id="otpSection">
+                        <h3 class="otp-title">Verify Your Identity</h3>
+                        <p>OTP sent to your registered mobile number/email.</p>
+                        <div class="otp-inputs">
+                            <input type="text" class="otp-input" maxlength="1">
+                            <input type="text" class="otp-input" maxlength="1">
+                            <input type="text" class="otp-input" maxlength="1">
+                            <input type="text" class="otp-input" maxlength="1">
+                            <input type="text" class="otp-input" maxlength="1">
+                            <input type="text" class="otp-input" maxlength="1">
+                        </div>
+                        <button class="submit-btn" id="verifyBtn">
+                            <i class="fas fa-check-circle"></i> Verify OTP
+                        </button>
+                    </div>
+
+                    <div class="success-message" id="successMessage">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>Account Successfully Created!</h3>
+                        <p>Welcome to Modern Bank. Your account has been opened successfully.</p>
+                        <div class="account-number" id="accountNumber">XXXXXXXX</div>
+                        <p>Your account details have been sent to your registered email and mobile number.</p>
+                    </div>
+                </section>
+
+                <section class="benefits-section">
+                    <h2 class="benefits-title">Why Choose Us?</h2>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Instant Account Opening</h4>
+                            <p>Open your account in minutes with our streamlined digital process.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Secure Banking</h4>
+                            <p>Your financial data is protected with bank-level security and encryption.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>24/7 Customer Support</h4>
+                            <p>Our support team is available round the clock to assist you.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Mobile Banking</h4>
+                            <p>Access your accounts anytime, anywhere with our mobile banking app.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Competitive Interest Rates</h4>
+                            <p>Enjoy attractive interest rates on savings and deposit accounts.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>No Hidden Fees</h4>
+                            <p>Transparent pricing with no hidden charges or surprise fees.</p>
+                        </div>
+                    </div>
+
+                    <div class="login-link">
+                        <p>Already have an account? <a href="#">Login here</a></p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Modern Bank. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // File upload functionality
+            const idUpload = document.getElementById('idUpload');
+            const idProof = document.getElementById('idProof');
+            const idFileName = document.getElementById('idFileName');
+            
+            const addressUpload = document.getElementById('addressUpload');
+            const addressProof = document.getElementById('addressProof');
+            const addressFileName = document.getElementById('addressFileName');
+            
+            idUpload.addEventListener('click', function() {
+                idProof.click();
+            });
+            
+            addressUpload.addEventListener('click', function() {
+                addressProof.click();
+            });
+            
+            idProof.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    idFileName.textContent = this.files[0].name;
+                } else {
+                    idFileName.textContent = '';
+                }
+            });
+            
+            addressProof.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    addressFileName.textContent = this.files[0].name;
+                } else {
+                    addressFileName.textContent = '';
+                }
+            });
+            
+            // Form submission
+            const accountForm = document.getElementById('accountForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const otpSection = document.getElementById('otpSection');
+            const successMessage = document.getElementById('successMessage');
+            const accountNumber = document.getElementById('accountNumber');
+            const verifyBtn = document.getElementById('verifyBtn');
+            const otpInputs = document.querySelectorAll('.otp-input');
+            
+            accountForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate passwords match
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match. Please try again.');
+                    return;
+                }
+                
+                // Show loading state
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+                
+                // Simulate form processing
+                setTimeout(function() {
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                    
+                    // Show OTP section
+                    otpSection.style.display = 'block';
+                    otpSection.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Auto-focus first OTP input
+                    otpInputs[0].focus();
+                }, 2000);
+            });
+            
+            // OTP input navigation
+            otpInputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    if (this.value.length === 1 && index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    }
+                });
+                
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
+                        otpInputs[index - 1].focus();
+                    }
+                });
+            });
+            
+            // OTP verification
+            verifyBtn.addEventListener('click', function() {
+                // Show loading state
+                verifyBtn.classList.add('loading');
+                verifyBtn.disabled = true;
+                
+                // Simulate OTP verification
+                setTimeout(function() {
+                    verifyBtn.classList.remove('loading');
+                    verifyBtn.disabled = false;
+                    
+                    // Generate random account number
+                    const randomAccountNumber = Math.floor(10000000 + Math.random() * 90000000);
+                    accountNumber.textContent = randomAccountNumber;
+                    
+                    // Show success message
+                    successMessage.style.display = 'block';
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
